@@ -1,0 +1,28 @@
+{
+  "name": "wd-javascript",
+  "version": "1.0.0",
+  "description": "Completing mentoring-II tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashaOK47/WD-javascript.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "webpack"
+  ],
+  "author": "Sasha Okoronko <hvorost22@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SashaOK47/WD-javascript/issues"
+  },
+  "homepage": "https://github.com/SashaOK47/WD-javascript#readme",
+  "devDependencies": {
+    "webpack": "^5.58.0",
+    "webpack-cli": "^4.9.0"
+  }
+}
