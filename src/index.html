@@ -7,11 +7,64 @@
     <title>Webpack</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Webpack Course!</h1>
-      <div class="slider">
-        <img src="img/slide-2.png" alt="">
+    <heade class="header">
+      <h1 class="header__title title">WD-Javascript</h1>
+    </heade>
+    <main class="main">
+      <div class="container">
+        <section class="slider-carousel section">
+          <h2 class="slider-carousel__title title">Слайдер карусель</h2>
+          <div class="slider">
+            <div class="slider__wrapper">
+              <div class="slider__item">
+                <img src="img/slide-1.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-2.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-3.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-4.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-5.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-6.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-7.jpg" alt="">
+              </div>
+              <div class="slider__item">
+                <img src="img/slide-8.jpg" alt="">
+              </div>
+            </div>
+            <div class="slider__buttons">
+              <button class="slider-btn slider-btn--prev">
+                <img class="slider-btn__img" src="./img/arrow.svg" alt="Стрелка назад">
+              </button>
+              <button class="slider-btn slider-btn--next">
+                <img class="slider-btn__img" src="./img/arrow.svg" alt="Стрелка вперёд">
+              </button>
+            </div>
+          </div>
+          <div class="dots">
+            <span class="dot dot--active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </section>
+        <section class="calc section">
+          <h2 class="calc__title title">Калькулятор</h2>
+        </section>
       </div>
-    </div>
+    </main>
   </body>
 </html>

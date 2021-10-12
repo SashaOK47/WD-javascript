@@ -1,10 +1,2 @@
+@import './core.css';
 @import './slider.css';
-.container {
-    padding-top: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-h1 {
-    text-align: center;
-}
