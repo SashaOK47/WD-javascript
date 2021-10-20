@@ -15,7 +15,7 @@ module.exports = {
   output: {
     filename: `./js/${filename('js')}`,
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'img/[name][ext]'
+    // assetModuleFilename: 'img/[name][ext]'
   },
   devServer: {
     port: 3000,
@@ -48,7 +48,20 @@ module.exports = {
         test: /\.s[ac]ss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", 'sass-loader']
       },
-      { test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: 'asset/resource' }
+      {
+        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, 
+        type: 'asset/resource', 
+        generator: {
+          filename: 'img/[name][ext]'
+        }
+      },
+      {
+        test: /\.(?:|woff2)$/, 
+        type: 'asset/resource', 
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      }
     ]
   }
 };

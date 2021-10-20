@@ -1,77 +1,45 @@
-const calculatorDisplay = document.querySelector(".calc__result");
-const inputBtns = document.querySelectorAll(".calc__button");
-const clearBtn = document.querySelector(".clear");
-const onCalc = document.querySelector(".calc__button--on");
+const calcResult = document.querySelector('.calc__result');
+const inputBtns = document.querySelectorAll('.calc__button');
+const cleanBtn = document.querySelector('.calc__button--clean');
+const cleanOne = document.querySelector('.calc__button--clean-one');
 
-let firstValue = 0;
-let operatorValue = "";
-let awaitingNextValue = false;
-
-const resetAll = () => {
-  firstValue = 0;
-  operatorValue = "";
-  awaitingNextValue = false;
-  calculatorDisplay.textContent = "0";
+const sendNumberValue = (num) => {
+  if(num == '.') {
+      if(calcResult.value == '') {
+        calcResult.value += 0;
+      }
+      if(calcResult.value.includes('.')) {
+          num = '';
+      }
+  }
+  calcResult.value += num;
 }
 
-onCalc.addEventListener("click", () => {
-  calculatorDisplay.classList.toggle("calc-on");
-  resetAll();
-});
-
-const sendNumberValue = number => {
-  if (awaitingNextValue) {
-    calculatorDisplay.textContent = number;
-    awaitingNextValue = false;
-  } else {
-    const displayValue = calculatorDisplay.textContent;
-    calculatorDisplay.textContent =
-      displayValue === "0" ? number : displayValue + number;
+const useOperator = (op) => {
+  if(calcResult.value) {
+    calcResult.value += op;
   }
 }
 
-const addDecimal = () => {
-  if (awaitingNextValue) return;
-  if (!calculatorDisplay.textContent.includes(".")) {
-    calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
-  }
+const eql = () => {
+  calcResult.value = Math.round(eval(calcResult.value) * 100000000) / 100000000;
 }
 
-const calculate = {
-  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
-
-  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
-
-  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
-
-  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
-
-  "=": (firstNumber, secondNumber) => secondNumber,
-};
-
-const useOperator = operator => {
-  const currentValue = Number(calculatorDisplay.textContent);
-  if (operatorValue && awaitingNextValue) {
-    operatorValue = operator;
-    return;
-  }
-  if (!firstValue) {
-    firstValue = currentValue;
-  } else {
-    const calculation = calculate[operatorValue](firstValue, currentValue);
-    calculatorDisplay.textContent = calculation;
-    firstValue = calculation;
-  }
-  awaitingNextValue = true;
-  operatorValue = operator;
-}
 inputBtns.forEach((inputBtn) => {
   if (inputBtn.classList.contains("num")) {
     inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
   } else if (inputBtn.classList.contains("operator")) {
     inputBtn.addEventListener("click", () => useOperator(inputBtn.value));
-  } else if (inputBtn.classList.contains("decimal")) {
-    inputBtn.addEventListener("click", () => addDecimal());
+  } else if (inputBtn.classList.contains("eql")) {
+    inputBtn.addEventListener("click", () => eql());
   }
 });
-clearBtn.addEventListener("click", resetAll);
+
+cleanOne.addEventListener('click', () => {
+  let exp = calcResult.value;
+  calcResult.value = exp.substring(0, exp.length - 1);
+});
+
+cleanBtn.addEventListener("click", () => {
+  calcResult.value = '';
+});
