@@ -1,7 +1,19 @@
 const calcResult = document.querySelector('.calc__result');
 const inputBtns = document.querySelectorAll('.calc__button');
 const cleanBtn = document.querySelector('.calc__button--clean');
+const btnOn = document.querySelector('.calc__button--on');
 const cleanOne = document.querySelector('.calc__button--clean-one');
+
+
+
+const clear = () => {
+  calcResult.value = '';
+};
+
+btnOn.addEventListener('click', () => {
+  calcResult.classList.toggle('calc-on');
+  clear();
+})
 
 const sendNumberValue = (num) => {
   if(num == '.') {
@@ -41,6 +53,5 @@ cleanOne.addEventListener('click', () => {
   calcResult.value = exp.substring(0, exp.length - 1);
 });
 
-cleanBtn.addEventListener("click", () => {
-  calcResult.value = '';
-});
+
+cleanBtn.addEventListener("click", clear);
