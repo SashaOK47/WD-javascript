@@ -22,6 +22,7 @@ const useOperator = (op) => {
 }
 
 const eql = () => {
+  if(calcResult.value == '') return;
   calcResult.value = Math.round(eval(calcResult.value) * 100000000) / 100000000;
 }
 
