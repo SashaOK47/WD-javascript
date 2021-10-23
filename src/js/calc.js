@@ -17,7 +17,6 @@ const sendNumberValue = (num) => {
     calcEntry.value = "";
     result = false;
   }
-
   if (num == ".") {
     if (calcEntry.value == "") {
       calcEntry.value += 0;
@@ -25,27 +24,35 @@ const sendNumberValue = (num) => {
     if (calcEntry.value.includes(".")) {
       num = "";
     }
-  } else if (calcEntry.value.indexOf(".") == -1) {
-    calcEntry.value = calcEntry.value.replace("0", "");
+  }
+  if (calcEntry.value == "0") {
+    if (num == "0" && !calcEntry.value.includes(".")) return;
   }
   calcEntry.value += num;
 };
 
 const useOperator = (op) => {
   result = false;
-  if (op == "-") {
-    calcEntry.value += op;
-    calcEntry.value = calcEntry.value.replace("--", "-");
-  } else if (calcEntry.value) {
+
+  let exp = calcEntry.value;
+  if (!exp) {
+    if (op == "+" || op == "*" || op == "/") return;
+
+    if (op == "-") {
+      exp += op;
+    }
+    calcEntry.value += exp;
+  } else {
     calcResult.value += calcEntry.value + op;
     calcEntry.value = "";
   }
+  calcResult.value = calcResult.value.replace("--", "");
 };
 
 const eql = () => {
   result = true;
   let exp = calcResult.value + calcEntry.value;
-  calcEntry.value = Math.round(eval(exp) * 100000000) / 100000000;
+  calcEntry.value = eval(exp);
   calcResult.value = "";
 };
 
