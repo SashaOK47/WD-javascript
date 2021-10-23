@@ -73,16 +73,22 @@
           <h2 class="calc__title title">Калькулятор</h2>
           <div class="calculate__wrapper">
             <div class="calc">
-                <form class="calc__view">
-                  <input class="calc__result"
-                    type="text"
-                    placeholder="0"
-                    readonly
-                  />
-                </form>
+              <form class="calc__view">
+                <input class="calc__result" type="text" readonly />
+              </form>
+              <form class="calc__view">
+                <input
+                  class="calc__entry"
+                  type="text"
+                  placeholder="0"
+                  readonly
+                />
+              </form>
               <button class="calc__button calc__button--on">on/off</button>
               <button class="calc__button calc__button--clean">C</button>
-              <button class="calc__button calc__button--clean-one">&larr;</button>
+              <button class="calc__button calc__button--clean-one">
+                &larr;
+              </button>
               <button class="calc__button operator" value="/">/</button>
               <button class="calc__button num" value="7">7</button>
               <button class="calc__button num" value="8">8</button>
@@ -95,7 +101,12 @@
               <button class="calc__button num" value="1">1</button>
               <button class="calc__button num" value="2">2</button>
               <button class="calc__button num" value="3">3</button>
-              <button class="calc__button calc__button--plus operator" value="+">+</button>
+              <button
+                class="calc__button calc__button--plus operator"
+                value="+"
+              >
+                +
+              </button>
               <button class="calc__button num" value="0">0</button>
               <button class="calc__button num" value=".">.</button>
               <button class="calc__button eql" value="=">=</button>

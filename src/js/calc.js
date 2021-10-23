@@ -1,3 +1,4 @@
+const calcEntry = document.querySelector(".calc__entry");
 const calcResult = document.querySelector(".calc__result");
 const inputBtns = document.querySelectorAll(".calc__button");
 const cleanBtn = document.querySelector(".calc__button--clean");
@@ -6,48 +7,46 @@ const cleanOne = document.querySelector(".calc__button--clean-one");
 
 let result = false;
 
-const clear = () => {
-  calcResult.value = "";
-};
-
 btnOn.addEventListener("click", () => {
-  calcResult.classList.toggle("calc-on");
+  calcEntry.classList.toggle("calc-on");
   clear();
 });
 
 const sendNumberValue = (num) => {
   if (result) {
-    calcResult.value = "";
+    calcEntry.value = "";
     result = false;
   }
 
   if (num == ".") {
-    if (calcResult.value == "") {
-      calcResult.value += 0;
+    if (calcEntry.value == "") {
+      calcEntry.value += 0;
     }
-    if (calcResult.value.includes(".")) {
+    if (calcEntry.value.includes(".")) {
       num = "";
     }
-  } else if (calcResult.value.indexOf(".") == -1) {
-    calcResult.value = calcResult.value.replace("0", "");
+  } else if (calcEntry.value.indexOf(".") == -1) {
+    calcEntry.value = calcEntry.value.replace("0", "");
   }
-  calcResult.value += num;
+  calcEntry.value += num;
 };
 
 const useOperator = (op) => {
   result = false;
   if (op == "-") {
-    calcResult.value += op;
-    calcResult.value = calcResult.value.replace("--", "-");
-  } else if (calcResult.value) {
-    calcResult.value += op;
+    calcEntry.value += op;
+    calcEntry.value = calcEntry.value.replace("--", "-");
+  } else if (calcEntry.value) {
+    calcResult.value += calcEntry.value + op;
+    calcEntry.value = "";
   }
 };
 
 const eql = () => {
-  if (calcResult.value == "") return;
-  calcResult.value = Math.round(eval(calcResult.value) * 100000000) / 100000000;
   result = true;
+  let exp = calcResult.value + calcEntry.value;
+  calcEntry.value = Math.round(eval(exp) * 100000000) / 100000000;
+  calcResult.value = "";
 };
 
 inputBtns.forEach((inputBtn) => {
@@ -60,10 +59,17 @@ inputBtns.forEach((inputBtn) => {
   }
 });
 
-cleanOne.addEventListener("click", () => {
-  let exp = calcResult.value;
-  calcResult.value = exp.substring(0, exp.length - 1);
-});
+const clear = () => {
+  calcEntry.value = "";
+  calcResult.value = "";
+};
+
+const clearOne = () => {
+  let exp = calcEntry.value;
+  calcEntry.value = exp.substring(0, exp.length - 1);
+};
+
+cleanOne.addEventListener("click", clearOne);
 
 cleanBtn.addEventListener("click", clear);
 
@@ -72,6 +78,8 @@ window.addEventListener("keydown", (e) => {
     sendNumberValue(e.key);
   } else if (e.key == "+" || e.key == "-" || e.key == "/" || e.key == "*") {
     useOperator(e.key);
+  } else if (e.key == "Backspace") {
+    clearOne();
   } else if (e.key == "=" || e.key == "Enter") {
     e.preventDefault();
     eql();
