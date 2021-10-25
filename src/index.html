@@ -7,9 +7,9 @@
     <title>Webpack</title>
   </head>
   <body>
-    <heade class="header">
+    <header class="header">
       <h1 class="header__title title">WD-Javascript</h1>
-    </heade>
+    </header>
     <main class="main">
       <div class="container">
         <section class="slider-carousel section">
@@ -17,36 +17,44 @@
           <div class="slider">
             <div class="slider__wrapper">
               <div class="slider__item">
-                <img src="img/slide-1.jpg" alt="">
+                <img src="img/slide-1.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-2.jpg" alt="">
+                <img src="img/slide-2.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-3.jpg" alt="">
+                <img src="img/slide-3.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-4.jpg" alt="">
+                <img src="img/slide-4.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-5.jpg" alt="">
+                <img src="img/slide-5.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-6.jpg" alt="">
+                <img src="img/slide-6.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-7.jpg" alt="">
+                <img src="img/slide-7.jpg" alt="" />
               </div>
               <div class="slider__item">
-                <img src="img/slide-8.jpg" alt="">
+                <img src="img/slide-8.jpg" alt="" />
               </div>
             </div>
             <div class="slider__buttons">
               <button class="slider-btn slider-btn--prev">
-                <img class="slider-btn__img" src="./img/arrow.svg" alt="Стрелка назад">
+                <img
+                  class="slider-btn__img"
+                  src="./img/arrow.svg"
+                  alt="Стрелка назад"
+                />
               </button>
               <button class="slider-btn slider-btn--next">
-                <img class="slider-btn__img" src="./img/arrow.svg" alt="Стрелка вперёд">
+                <img
+                  class="slider-btn__img"
+                  src="./img/arrow.svg"
+                  alt="Стрелка вперёд"
+                />
               </button>
             </div>
           </div>
@@ -61,8 +69,49 @@
             <span class="dot"></span>
           </div>
         </section>
-        <section class="calc section">
+        <section class="calculate section">
           <h2 class="calc__title title">Калькулятор</h2>
+          <div class="calculate__wrapper">
+            <div class="calc">
+              <form class="calc__view">
+                <input class="calc__result" type="text" readonly />
+              </form>
+              <form class="calc__view">
+                <input
+                  class="calc__entry"
+                  type="text"
+                  placeholder="0"
+                  readonly
+                />
+              </form>
+              <button class="calc__button calc__button--on">on/off</button>
+              <button class="calc__button calc__button--clean">C</button>
+              <button class="calc__button calc__button--clean-one">
+                &larr;
+              </button>
+              <button class="calc__button operator" value="/">/</button>
+              <button class="calc__button num" value="7">7</button>
+              <button class="calc__button num" value="8">8</button>
+              <button class="calc__button num" value="9">9</button>
+              <button class="calc__button operator" value="*">*</button>
+              <button class="calc__button num" value="4">4</button>
+              <button class="calc__button num" value="5">5</button>
+              <button class="calc__button num" value="6">6</button>
+              <button class="calc__button operator" value="-">-</button>
+              <button class="calc__button num" value="1">1</button>
+              <button class="calc__button num" value="2">2</button>
+              <button class="calc__button num" value="3">3</button>
+              <button
+                class="calc__button calc__button--plus operator"
+                value="+"
+              >
+                +
+              </button>
+              <button class="calc__button num" value="0">0</button>
+              <button class="calc__button num" value=".">.</button>
+              <button class="calc__button eql" value="=">=</button>
+            </div>
+          </div>
         </section>
       </div>
     </main>

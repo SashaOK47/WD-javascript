@@ -4,7 +4,7 @@ const sliderItems = document.querySelectorAll(".slider__item");
 const nextBtn = document.querySelector(".slider-btn--next");
 const prevBtn = document.querySelector(".slider-btn--prev");
 const dots = document.querySelectorAll(".dot");
-let slideShow = 2;
+let slideShow = 1;
 let position = 0;
 let index = 0;
 
