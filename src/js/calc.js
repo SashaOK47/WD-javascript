@@ -25,8 +25,8 @@ const sendNumberValue = (num) => {
       num = "";
     }
   }
-  if (calcEntry.value == "0") {
-    if (num == "0" && !calcEntry.value.includes(".")) return;
+  if (calcEntry.value == "0" && num == "0" && !calcEntry.value.includes(".")) {
+    return;
   }
   calcEntry.value += num;
 };
@@ -52,7 +52,10 @@ const useOperator = (op) => {
 const eql = () => {
   result = true;
   let exp = calcResult.value + calcEntry.value;
-  calcEntry.value = eval(exp);
+  if(exp) {
+    exp = exp.replace('--', '+');
+    calcEntry.value = eval(exp);
+  }
   calcResult.value = "";
 };
 
