@@ -4,7 +4,7 @@
 .application {
   padding: 2rem;
   max-width: 40rem;
-  background-color: $mineShaft;
+  background: url("../img/pom.gif") center no-repeat $mineShaft;
   .settings {
     display: flex;
     justify-content: space-between;
@@ -28,6 +28,23 @@
       border-bottom: 0.125rem solid $white;
       font-size: 1rem;
       color: $white;
+    }
+  }
+  &__image {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    &.show {
+      opacity: 1;
+      transform: scale(1);
     }
   }
   &__timing {

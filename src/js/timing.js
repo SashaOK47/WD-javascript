@@ -1,4 +1,5 @@
 const application = document.querySelector(".application");
+const applicationImg = document.querySelector(".application__img");
 const workInput = document.getElementById("workInput");
 const breakInput = document.getElementById("breakInput");
 const startBtn = document.getElementById("start");
@@ -32,14 +33,16 @@ function startWorkTiming() {
     timeBreakSecond = breakInput.value * 60;
   }
   clearInterval(interval);
-  if(timeWorkSecond < 0 || timeBreakSecond < 0) return;
+  if (timeWorkSecond < 0 || timeBreakSecond < 0) return;
   displayTime(timeWorkSecond);
-
+  application.style.backgroundImage = "none";
   animationShow(timerDisplay);
   animationShow(textDisplay);
-  changeText(textDisplay, 'Работаем!');
+  animationShow(applicationImg);
+  changeBackgroundColor(application, "#006fcf");
+  changeText(textDisplay, "Работаем!");
   hide(startBtn);
-  show(pauseBtn)
+  show(pauseBtn);
   removeDisabled(pauseBtn);
   interval = setInterval(() => {
     timeWorkSecond--;
@@ -60,12 +63,12 @@ function startBreakTiming() {
     timeBreakSecond = breakInput.value * 60;
   }
   hide(startBtn);
-  show(pauseBtn)
+  show(pauseBtn);
   clearInterval(interval);
   displayTime(timeBreakSecond);
-  changeText(textDisplay, 'Отдыхаем!');
-  application.style.backgroundColor = "blue";
-  changeBackgroundColor(application, 'blue')
+  applicationImg.src = "../img/break.gif";
+  changeText(textDisplay, "Отдыхаем!");
+  changeBackgroundColor(application, "#fc9ebf");
   interval = setInterval(() => {
     timeBreakSecond--;
     displayTime(timeBreakSecond);
@@ -73,11 +76,12 @@ function startBreakTiming() {
       audioPlay();
       clearInterval(interval);
       timeBreakSecond = 0;
-      changeText(timerDisplay, 'Время вышло');
+      animationHide(applicationImg);
+      changeText(timerDisplay, "Время вышло");
       addDisabled(pauseBtn);
       removeDisabled(resetBtn);
-      changeText(textDisplay, '');
-      changeBackgroundColor(application, '#3fc244')
+      changeText(textDisplay, "");
+      changeBackgroundColor(application, "#3fc244");
     }
   }, 1000);
 }
@@ -107,14 +111,17 @@ function resetTiming() {
   breakInput.value = 1;
   finishWork = false;
   paused = false;
+  application.style.backgroundImage = "";
+  applicationImg.src = "../img/work.gif";
   animationHide(timerDisplay);
   animationHide(textDisplay);
+  animationHide(applicationImg);
   hide(continueBtn);
   show(startBtn);
   hide(pauseBtn);
   addDisabled(resetBtn);
-  changeBackgroundColor(application, '#1f1f1f')
-  changeText(textDisplay, '');
+  changeBackgroundColor(application, "#1f1f1f");
+  changeText(textDisplay, "");
 }
 
 function audioPlay() {
@@ -123,16 +130,16 @@ function audioPlay() {
 }
 
 function show(nodeEl) {
-  nodeEl.classList.remove('hide');
+  nodeEl.classList.remove("hide");
 }
 function hide(nodeEl) {
-  nodeEl.classList.add('hide');
+  nodeEl.classList.add("hide");
 }
 function animationShow(nodeEl) {
-  nodeEl.classList.add('show');
+  nodeEl.classList.add("show");
 }
 function animationHide(nodeEl) {
-  nodeEl.classList.remove('show');
+  nodeEl.classList.remove("show");
 }
 function addDisabled(nodeEl) {
   nodeEl.setAttribute("disabled", "true");
