@@ -113,6 +113,51 @@
             </div>
           </div>
         </section>
+        <section class="pomodoro section">
+          <h2 class="pomodoro__title title">Date/Timing - Pomodoro</h2>
+          <div class="pomodoro-application application">
+            <div class="application__settings settings">
+              <div class="settings__group">
+                <label class="settings__label" for="workInput"
+                  >Время работы(мин.)</label
+                >
+                <input
+                  class="settings__input"
+                  id="workInput"
+                  type="number"
+                  min="1"
+                  max="60"
+                  value="1"
+                />
+              </div>
+              <div class="settings__group">
+                <label class="settings__label" for="breakInput"
+                  >Время отдыха(мин.)</label
+                >
+                <input
+                  class="settings__input"
+                  id="breakInput"
+                  type="number"
+                  min="1"
+                  max="60"
+                  value="1"
+                />
+              </div>
+            </div>
+            <div class="application__timing" id="timing"></div>
+            <div class="application__text" id="text"></div>
+            <div class="application__buttons">
+              <button class="btn btn--start" id="start">Старт</button>
+              <button class="btn btn--pause hide" id="pause">Пауза</button>
+              <button class="btn btn--continue hide" id="continue">
+                Продолжить
+              </button>
+              <button class="btn btn--stop" id="reset" disabled>
+                Сбросить
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   </body>
