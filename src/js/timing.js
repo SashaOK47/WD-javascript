@@ -15,9 +15,7 @@ let paused = false;
 
 startBtn.addEventListener("click", startWorkTiming);
 pauseBtn.addEventListener("click", pauseTiming);
-continueBtn.addEventListener("click", () => {
-  continueTiming(finishWork);
-});
+continueBtn.addEventListener("click", continueTiming);
 resetBtn.addEventListener("click", resetTiming);
 
 function displayTime(second) {
@@ -31,15 +29,18 @@ function displayTime(second) {
 function startWorkTiming() {
   if (!paused) {
     timeWorkSecond = workInput.value * 60;
+    timeBreakSecond = breakInput.value * 60;
   }
   clearInterval(interval);
+  if(timeWorkSecond < 0 || timeBreakSecond < 0) return;
   displayTime(timeWorkSecond);
-  timerDisplay.classList.add("show");
-  textDisplay.classList.add("show");
-  textDisplay.innerText = "Работаем!";
-  startBtn.classList.add("hide");
-  pauseBtn.classList.remove("hide");
-  pauseBtn.removeAttribute("disabled");
+
+  animationShow(timerDisplay);
+  animationShow(textDisplay);
+  changeText(textDisplay, 'Работаем!');
+  hide(startBtn);
+  show(pauseBtn)
+  removeDisabled(pauseBtn);
   interval = setInterval(() => {
     timeWorkSecond--;
     displayTime(timeWorkSecond);
@@ -58,12 +59,13 @@ function startBreakTiming() {
   if (!paused) {
     timeBreakSecond = breakInput.value * 60;
   }
-  startBtn.classList.add("hide");
-  pauseBtn.classList.remove("hide");
+  hide(startBtn);
+  show(pauseBtn)
   clearInterval(interval);
   displayTime(timeBreakSecond);
-  textDisplay.innerText = "Отдыхаем!";
+  changeText(textDisplay, 'Отдыхаем!');
   application.style.backgroundColor = "blue";
+  changeBackgroundColor(application, 'blue')
   interval = setInterval(() => {
     timeBreakSecond--;
     displayTime(timeBreakSecond);
@@ -71,11 +73,11 @@ function startBreakTiming() {
       audioPlay();
       clearInterval(interval);
       timeBreakSecond = 0;
-      timerDisplay.innerHTML = "Время вышло";
-      pauseBtn.setAttribute("disabled", "true");
-      resetBtn.removeAttribute("disabled");
-      textDisplay.innerText = "";
-      application.style.backgroundColor = "#3fc244";
+      changeText(timerDisplay, 'Время вышло');
+      addDisabled(pauseBtn);
+      removeDisabled(resetBtn);
+      changeText(textDisplay, '');
+      changeBackgroundColor(application, '#3fc244')
     }
   }, 1000);
 }
@@ -83,15 +85,15 @@ function startBreakTiming() {
 function pauseTiming() {
   clearInterval(interval);
   paused = true;
-  continueBtn.classList.remove("hide");
-  pauseBtn.classList.add("hide");
-  resetBtn.removeAttribute("disabled");
+  show(continueBtn);
+  hide(pauseBtn);
+  removeDisabled(resetBtn);
 }
 
-function continueTiming(finishWork) {
-  continueBtn.classList.add("hide");
-  pauseBtn.classList.remove("hide");
-  resetBtn.setAttribute("disabled", "true");
+function continueTiming() {
+  hide(continueBtn);
+  show(pauseBtn);
+  addDisabled(resetBtn);
   if (!finishWork) {
     startWorkTiming();
   } else {
@@ -105,17 +107,42 @@ function resetTiming() {
   breakInput.value = 1;
   finishWork = false;
   paused = false;
-  timerDisplay.classList.remove("show");
-  textDisplay.classList.remove("show");
-  continueBtn.classList.add("hide");
-  startBtn.classList.remove("hide");
-  pauseBtn.classList.add("hide");
-  resetBtn.setAttribute("disabled", "true");
-  application.style.backgroundColor = "#1f1f1f";
-  textDisplay.innerText = "";
+  animationHide(timerDisplay);
+  animationHide(textDisplay);
+  hide(continueBtn);
+  show(startBtn);
+  hide(pauseBtn);
+  addDisabled(resetBtn);
+  changeBackgroundColor(application, '#1f1f1f')
+  changeText(textDisplay, '');
 }
 
 function audioPlay() {
   audio = new Audio("../audio/zvuk.mp3");
   audio.play();
+}
+
+function show(nodeEl) {
+  nodeEl.classList.remove('hide');
+}
+function hide(nodeEl) {
+  nodeEl.classList.add('hide');
+}
+function animationShow(nodeEl) {
+  nodeEl.classList.add('show');
+}
+function animationHide(nodeEl) {
+  nodeEl.classList.remove('show');
+}
+function addDisabled(nodeEl) {
+  nodeEl.setAttribute("disabled", "true");
+}
+function removeDisabled(nodeEl) {
+  nodeEl.removeAttribute("disabled");
+}
+function changeText(nodeEl, text) {
+  nodeEl.innerText = text;
+}
+function changeBackgroundColor(nodeEl, color) {
+  nodeEl.style.backgroundColor = color;
 }
