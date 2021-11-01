@@ -1,0 +1,109 @@
+.pomodoro-application {
+  margin: 0 auto;
+}
+.application {
+  padding: 2rem;
+  max-width: 40rem;
+  background: url("../img/pom.gif") center no-repeat $mineShaft;
+  .settings {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    &__group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__label {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: $white;
+    }
+    &__input {
+      padding: 0.3rem;
+      width: 7rem;
+      border: none;
+      outline: none;
+      background: none;
+      border-bottom: 0.125rem solid $white;
+      font-size: 1rem;
+      color: $white;
+    }
+  }
+  &__image {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    &.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  &__timing {
+    height: 5rem;
+    margin-bottom: 1.5rem;
+    user-select: none;
+    text-align: center;
+    font-size: 5rem;
+    color: $white;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    &.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  &__text {
+    height: 2rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    &.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  &__buttons {
+    max-width: 20rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    .btn {
+      min-width: 7.5rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      color: $white;
+      border: none;
+      background-color: $red;
+      cursor: pointer;
+      transition: box-shadow 0.5s ease, color 0.5s ease;
+      &:hover {
+        color: $black;
+        box-shadow: 0 0.1rem 0.2rem $red;
+      }
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+      &:disabled {
+        box-shadow: none;
+        background-color: $gray;
+        color: $black;
+        cursor: no-drop;
+      }
+    }
+  }
+}
