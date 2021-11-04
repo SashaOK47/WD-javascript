@@ -3,3 +3,4 @@ import '../index.html';
 import './slider';
 import './calc';
 import './timing';
+import './game';
