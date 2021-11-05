@@ -6,38 +6,15 @@ const apiKey = "c7972c90f0b2bbe4dc48343b795a6aac";
 let latitude;
 let longitude;
 let city;
+let currentCity;
+
+if (YMaps.location) {
+  city = YMaps.location.city;
+  fetchWeather(city, apiKey)
+}
 
 btnTemp.addEventListener("click", changeTemp);
 appBtn.addEventListener("click", btnWeatherHandler);
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function (position) {
-    latitude = Math.floor(position.coords.latitude * 10) / 10;
-    longitude = Math.floor(position.coords.longitude * 10) / 10;
-    fetchWeatherCoord(latitude, longitude, apiKey);
-  });
-}
-
-async function fetchWeatherCoord(lat, long, key) {
-  try {
-    const request = new Request(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${key}&lang=ru`,
-      {
-        method: "get",
-      }
-    );
-
-    const response = await fetch(request);
-    const data = await response.json();
-
-    inputCity.value = "";
-    const html = renderWeatherApplication(data);
-    appDescription.innerHTML = "";
-    appDescription.insertAdjacentHTML("afterbegin", html);
-  } catch (error) {
-    alert("Такого города не существует1");
-  }
-}
 
 async function fetchWeather(city, key) {
   try {
