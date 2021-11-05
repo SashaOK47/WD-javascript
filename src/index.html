@@ -145,8 +145,8 @@
               </div>
             </div>
             <div class="application__image">
-              <img class="application__img" src="img/work.gif">
-              <img class="application__img" src="img/break.gif">
+              <img class="application__img" src="img/work.gif" />
+              <img class="application__img" src="img/break.gif" />
             </div>
             <div class="application__timing" id="timing"></div>
             <div class="application__text" id="text"></div>
@@ -165,16 +165,38 @@
         <section class="game section">
           <h2 class="game__title title">Лабиринт</h2>
           <div class="game__container">
-              <div class="game__level" id="level"></div>
-              <div class="game__maze" id="game"></div>
-              <div class="game__settings">
-                <input class="cols" id="cols" type="number" value="10">
-                <input class="rows" id="rows" type="number" value="10">
-                <button class="start-game" id="start-game">Старт</button>
-              </div>
+            <div class="game__level" id="level"></div>
+            <div class="game__maze" id="game"></div>
+            <div class="game__settings">
+              <input class="cols" id="cols" type="number" value="10" />
+              <input class="rows" id="rows" type="number" value="10" />
+              <button class="start-game" id="start-game">Старт</button>
+            </div>
           </div>
-      </section>
+        </section>
+        <section class="weather section">
+          <h2 class="weather__title title">Погода</h2>
+          <div class="weather__application app">
+            <button class="app__btn-temp">F</button>
+            <div class="app__description" id="app-descr"></div>
+            <div class="app__form">
+              <label class="app__label" for="city">Введите город</label>
+              <input
+                class="app__input"
+                type="text"
+                id="city"
+                placeholder="Брест"
+              />
+              <button class="app__btn" id="app-btn">
+                Получить информацию о погоде
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
+    <footer class="footer">
+      <h1 class="footer__title title">End WD-Javascript task</h1>
+    </footer>
   </body>
 </html>
