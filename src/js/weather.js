@@ -12,7 +12,6 @@ if (YMaps.location) {
   city = YMaps.location.city;
   fetchWeather(city, apiKey)
 }
-
 btnTemp.addEventListener("click", changeTemp);
 appBtn.addEventListener("click", btnWeatherHandler);
 
