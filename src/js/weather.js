@@ -3,10 +3,7 @@ const appBtn = document.getElementById("app-btn");
 const inputCity = document.getElementById("city");
 const btnTemp = document.querySelector(".app__btn-temp");
 const apiKey = "c7972c90f0b2bbe4dc48343b795a6aac";
-let latitude;
-let longitude;
 let city;
-let currentCity;
 
 if (YMaps.location) {
   city = YMaps.location.city;
