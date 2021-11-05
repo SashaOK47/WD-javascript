@@ -44,7 +44,6 @@ function createFieldGame() {
   }
   startGame();
 }
-
 function startGame() {
   levelText.textContent = `Уровень: ${level}`;
   createSmile();
@@ -52,13 +51,11 @@ function startGame() {
   createMaze();
   window.addEventListener("keydown", move);
 }
-
 function smileCoordinates() {
   let posX = 1;
   let posY = cols;
   return [posX, posY];
 }
-
 function createSmile() {
   coordinatesSmile = smileCoordinates();
   smile = document.querySelector(
@@ -70,13 +67,11 @@ function createSmile() {
   );
   smile.classList.add("smile");
 }
-
 function finishCoordinates() {
   let posX = rows;
   let posY = 1;
   return [posX, posY];
 }
-
 function createFinish() {
   coordinatesFinish = finishCoordinates();
   finish = document.querySelector(
@@ -88,13 +83,11 @@ function createFinish() {
   );
   finish.classList.add("finish");
 }
-
 function randomCoordinatesMaze() {
   let posX = Math.round(Math.random() * (rows - 1) + 1);
   let posY = Math.round(Math.random() * (cols - 1) + 1);
   return [posX, posY];
 }
-
 function createMaze() {
   coordinatesMaze = randomCoordinatesMaze();
   maze = document.querySelector(
@@ -119,7 +112,6 @@ function createMaze() {
   maze.classList.add("maze");
   mazeCells.push(maze);
 }
-
 function move(e) {
   smile.classList.remove("smile");
   e.preventDefault();
@@ -196,39 +188,46 @@ function move(e) {
     successLevel();
   }
 }
-
 function gameOver() {
-  level = 1;
+  gamePopup('Игра окончена!', '../img/stena.gif', true);
   audioPlay('../audio/game-over.mp3');
-  gamePopup('Игра окончена!', '../img/stena.gif');
   window.removeEventListener('keydown', move);
-  mazeCells.forEach((mazeCell) => mazeCell.classList.remove("maze"));
-  // startGame();
+  popup.querySelector('.game__popup-reset').addEventListener('click', restartGame);
 }
-
+function restartGame() {
+  level = 1;
+  popup.classList.remove('show');
+  overlay.classList.remove('show-overlay');
+  mazeCells.forEach((mazeCell) => mazeCell.classList.remove("maze"));
+  startGame();
+}
 function successLevel() {
-  level++;
-  gamePopup('Уровень пройден', '../img/finish2.png');
+  gamePopup(`${level} уровень пройден!`, '../img/finish2.png', false);
   window.removeEventListener('keydown', move);
   audioPlay('../audio/finish.mp3');
-  
-  popup.querySelector('.game__popup-btn').addEventListener('click', () => {
-    startGame();
-    popup.classList.remove('show');
-    overlay.classList.remove('show-overlay');
-  });
-  // alert("Уровень пройден");
-  // startGame();
+  popup.querySelector('.game__popup-continue').addEventListener('click', nextLevel);
 }
-
+function nextLevel() {
+  level++;
+  popup.classList.remove('show');
+  overlay.classList.remove('show-overlay');
+  startGame();
+}
 function audioPlay(url) {
   audio = new Audio(url);
   audio.play();
 }
-
-function gamePopup(text, img) {
+function gamePopup(text, img, btn) {
   popup.classList.add('show');
   overlay.classList.add('show-overlay');
   popup.querySelector('.game__popup-message').innerText = text;
   popup.querySelector('.game__popup-img').src = img;
+  if(btn) {
+    popup.querySelector('.game__popup-reset').classList.add('btn-show');
+    popup.querySelector('.game__popup-continue').classList.remove('btn-show');
+  } else {
+    popup.querySelector('.game__popup-continue').classList.add('btn-show');
+    popup.querySelector('.game__popup-reset').classList.remove('btn-show');
+  }
+  
 }
