@@ -12,8 +12,8 @@ appBtn.addEventListener("click", btnWeatherHandler);
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function (position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
+    latitude = Math.floor(position.coords.latitude * 10) / 10;
+    longitude = Math.floor(position.coords.longitude * 10) / 10;
     fetchWeatherCoord(latitude, longitude, apiKey);
   });
 }
