@@ -2,41 +2,43 @@ const appDescription = document.getElementById("app-descr");
 const appBtn = document.getElementById("app-btn");
 const inputCity = document.getElementById("city");
 const btnTemp = document.querySelector(".app__btn-temp");
-
 const apiKey = "c7972c90f0b2bbe4dc48343b795a6aac";
-const apiLocationCityUrl = "https://ru2.sxgeo.city/";
+let latitude;
+let longitude;
 let city;
-
-nowLocationCityWeather(apiLocationCityUrl, apiKey);
 
 btnTemp.addEventListener("click", changeTemp);
 appBtn.addEventListener("click", btnWeatherHandler);
 
-function changeTemp() {
-  const сelsia = document.querySelector(".temp--сelsia");
-  const fahrenheit = document.querySelector(".temp--fahrenheit");
-  if (btnTemp.textContent == "F") {
-    btnTemp.textContent = "C";
-  } else {
-    btnTemp.textContent = "F";
-  }
-  сelsia.classList.toggle("hide");
-  fahrenheit.classList.toggle("hide");
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    latitude = Math.floor(position.coords.latitude * 10) / 10;
+    longitude = Math.floor(position.coords.longitude * 10) / 10;
+    fetchWeatherCoord(latitude, longitude, apiKey);
+  });
 }
 
-async function nowLocationCityWeather(url, key) {
+async function fetchWeatherCoord(lat, long, key) {
   try {
-    const request = new Request(url, {
-      method: "get",
-    });
+    const request = new Request(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${key}&lang=ru`,
+      {
+        method: "get",
+      }
+    );
+
     const response = await fetch(request);
     const data = await response.json();
-    city = data.city.name_ru;
-    fetchWeather(city, key);
+
+    inputCity.value = "";
+    const html = renderWeatherApplication(data);
+    appDescription.innerHTML = "";
+    appDescription.insertAdjacentHTML("afterbegin", html);
   } catch (error) {
-    alert(error);
+    alert("Такого города не существует1");
   }
 }
+
 async function fetchWeather(city, key) {
   try {
     const request = new Request(
@@ -90,4 +92,16 @@ function renderWeatherApplication(data) {
       )}</span> км/ч</p>
     </div>
   `;
+}
+
+function changeTemp() {
+  const сelsia = document.querySelector(".temp--сelsia");
+  const fahrenheit = document.querySelector(".temp--fahrenheit");
+  if (btnTemp.textContent == "F") {
+    btnTemp.textContent = "C";
+  } else {
+    btnTemp.textContent = "F";
+  }
+  сelsia.classList.toggle("hide");
+  fahrenheit.classList.toggle("hide");
 }
