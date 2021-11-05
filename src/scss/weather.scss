@@ -1,0 +1,85 @@
+.weather__application {
+  margin: 0 auto;
+  width: 25rem;
+  min-height: 25rem;
+  background-color: $yellow;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  &__btn-temp {
+    position: absolute;
+    right: 5rem;
+    top: 10.5rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background-color: $codGray;
+    cursor: pointer;
+    color: $gray;
+  }
+  &__info {
+    color: $codGray;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 12.5rem;
+    &-weather {
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    &-city {
+      margin-bottom: 0.3rem;
+    }
+    &-temp {
+      margin-bottom: 0.3rem;
+    }
+    &-humidity {
+      margin-bottom: 0.3rem;
+    }
+    &-wind {
+      margin-bottom: 0.3rem;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  &__btn {
+    min-width: 7.5rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    color: $white;
+    border: none;
+    background-color: $red;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease, color 0.5s ease;
+    &:hover {
+      color: $black;
+      box-shadow: 0 0.1rem 0.2rem $red;
+    }
+  }
+  &__form {
+    background-color: $mineShaft;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+  }
+  &__label {
+    margin-bottom: 0.5rem;
+    color: $gray;
+    font-size: 1.2rem;
+  }
+  &__input {
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 0.0625rem solid $white;
+    color: $white;
+  }
+}

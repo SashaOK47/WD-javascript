@@ -4,3 +4,4 @@ import './slider';
 import './calc';
 import './timing';
 import './game';
+import './weather';
