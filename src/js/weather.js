@@ -4,7 +4,7 @@ const inputCity = document.getElementById("city");
 const btnTemp = document.querySelector(".app__btn-temp");
 
 const apiKey = "c7972c90f0b2bbe4dc48343b795a6aac";
-const apiLocationCityUrl = "https://geolocation-db.com/json/";
+const apiLocationCityUrl = "https://ru2.sxgeo.city/";
 let city;
 
 nowLocationCityWeather(apiLocationCityUrl, apiKey);
@@ -31,7 +31,7 @@ async function nowLocationCityWeather(url, key) {
     });
     const response = await fetch(request);
     const data = await response.json();
-    city = data.city;
+    city = data.city.name_ru;
     fetchWeather(city, key);
   } catch (error) {
     alert(error);

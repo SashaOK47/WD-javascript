@@ -166,12 +166,20 @@
           <h2 class="game__title title">Лабиринт</h2>
           <div class="game__container">
             <div class="game__level" id="level"></div>
-            <div class="game__maze" id="game"></div>
-            <div class="game__settings">
-              <input class="cols" id="cols" type="number" value="10" />
-              <input class="rows" id="rows" type="number" value="10" />
-              <button class="start-game" id="start-game">Старт</button>
+            <div class="game__maze" id="game">
+              <div class="game__overlay"></div>
+              <div class="game__popup">
+                Игра окончена!
+              </div>
             </div>
+            <div class="game__settings settings">
+              <div class="settings__fields">
+                <input class="settings__cols" id="cols" type="number" value="10" />
+                <input class="settings__rows" id="rows" type="number" value="10" />
+              </div>
+              <button class="settings__btn" id="start-game">Старт</button>
+            </div>
+            
           </div>
         </section>
         <section class="weather section">

@@ -3,7 +3,13 @@ const colsCount = document.getElementById("cols");
 const rowsCount = document.getElementById("rows");
 const startBtnGame = document.getElementById("start-game");
 const levelText = document.getElementById("level");
-const popup = document.getElementById("popup");
+const popup = document.querySelector(".game__popup");
+const overlay = document.querySelector(".game__overlay");
+
+function gamePopup() {
+  popup.classList.add('show');
+  overlay.classList.add('show-overlay');
+}
 
 let cols = 10;
 let rows = 10;
@@ -24,7 +30,8 @@ function createFieldGame() {
 
   for (let i = 0; i < cols * rows; i++) {
     let cell = document.createElement("div");
-    cell.style.width = cell.style.height = 500 / rows + "px";
+    cell.style.width = 500 / rows + "px";
+    // cell.style.height = 500 / cols + "px";
     game.appendChild(cell);
     cell.classList.add("cell");
   }
@@ -197,7 +204,8 @@ function move(e) {
 
 function gameOver() {
   level = 1;
-  alert("Конец игры");
+  audioPlay('../audio/game-over.mp3');
+  gamePopup()
   console.log(mazeCells);
   mazeCells.forEach((mazeCell) => mazeCell.classList.remove("maze"));
   startGame();
@@ -205,6 +213,12 @@ function gameOver() {
 
 function successLevel() {
   level++;
+  audioPlay('../audio/finish.mp3');
   alert("Уровень пройден");
   startGame();
+}
+
+function audioPlay(url) {
+  audio = new Audio(url);
+  audio.play();
 }
