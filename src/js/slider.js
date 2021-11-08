@@ -3,15 +3,53 @@ const sliderWrapper = document.querySelector(".slider__wrapper");
 const sliderItems = document.querySelectorAll(".slider__item");
 const nextBtn = document.querySelector(".slider-btn--next");
 const prevBtn = document.querySelector(".slider-btn--prev");
-const dots = document.querySelectorAll(".dot");
-let slideShow = 1;
+const dotsContainer = document.querySelector(".dots");
+const input = document.querySelector(".www");
+
 let position = 0;
 let index = 0;
+let slideShow = 3;
+let dots;
+let itemWidth;
 
-const itemWidth = slider.offsetWidth / slideShow; // ширина каждого слайда
-sliderItems.forEach((item) => (item.style.minWidth = itemWidth + "px"));
 
-const nextSlide = () => {
+
+sliderWidth();
+createDots();
+
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
+
+function sliderWidth() {
+  itemWidth = slider.offsetWidth / slideShow;
+  sliderItems.forEach((item) => (item.style.minWidth = itemWidth + "px"));
+}
+
+function createDots() {
+  for(let i = 0; i < (sliderItems.length - slideShow) + 1; i++) {
+    const dotItem = document.createElement('span');
+    dotItem.classList.add('dot');
+    dotsContainer.appendChild(dotItem);
+  }
+  dots = document.querySelectorAll(".dot");
+  dots[0].classList.add('dot--active');
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener("click", () => {
+      position = itemWidth * dotIndex;
+      sliderWrapper.style.left = -position + "px";
+      index = dotIndex;
+      activeDot(index);
+    });
+  });
+}
+function activeDot(index) {
+  for (let dot of dots) {
+    dot.classList.remove("dot--active");
+  }
+  dots[index].classList.add("dot--active");
+};
+function nextSlide() {
   if (position < itemWidth * (sliderItems.length - slideShow)) {
     position += itemWidth;
     index++;
@@ -22,8 +60,7 @@ const nextSlide = () => {
   sliderWrapper.style.left = -position + "px";
   activeDot(index);
 };
-const prevSlide = () => {
-  console.log("prev");
+function prevSlide() {
   if (position > 0) {
     position -= itemWidth;
     index--;
@@ -35,20 +72,4 @@ const prevSlide = () => {
   activeDot(index);
 };
 
-const activeDot = (index) => {
-  for (let dot of dots) {
-    dot.classList.remove("dot--active");
-  }
-  dots[index].classList.add("dot--active");
-};
-dots.forEach((dot, dotIndex) => {
-  dot.addEventListener("click", () => {
-    position = itemWidth * dotIndex;
-    sliderWrapper.style.left = -position + "px";
-    index = dotIndex;
-    activeDot(index);
-  });
-});
 
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
