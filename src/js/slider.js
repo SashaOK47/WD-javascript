@@ -10,20 +10,15 @@ let position = 0;
 let index = 0;
 let slideShow = 3;
 let dots;
-let itemWidth;
+let itemWidth = slider.offsetWidth / slideShow;
+
+sliderItems.forEach((item) => (item.style.minWidth = itemWidth + "px"));
 
 
-
-sliderWidth();
 createDots();
 
 nextBtn.addEventListener("click", nextSlide);
 prevBtn.addEventListener("click", prevSlide);
-
-function sliderWidth() {
-  itemWidth = slider.offsetWidth / slideShow;
-  sliderItems.forEach((item) => (item.style.minWidth = itemWidth + "px"));
-}
 
 function createDots() {
   for(let i = 0; i < (sliderItems.length - slideShow) + 1; i++) {
@@ -33,16 +28,16 @@ function createDots() {
   }
   dots = document.querySelectorAll(".dot");
   dots[0].classList.add('dot--active');
-
-  dots.forEach((dot, dotIndex) => {
-    dot.addEventListener("click", () => {
-      position = itemWidth * dotIndex;
-      sliderWrapper.style.left = -position + "px";
-      index = dotIndex;
-      activeDot(index);
-    });
-  });
 }
+dots.forEach((dot, dotIndex) => {
+  dot.addEventListener("click", () => {
+    position = itemWidth * dotIndex;
+    sliderWrapper.style.left = -position + "px";
+    index = dotIndex;
+    activeDot(index);
+  });
+});
+
 function activeDot(index) {
   for (let dot of dots) {
     dot.classList.remove("dot--active");
