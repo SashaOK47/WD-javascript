@@ -4,7 +4,7 @@
 .application {
   padding: 2rem;
   max-width: 40rem;
-  background: url("../img/pom.gif") center no-repeat $mineShaft;
+  background: $mineShaft;
   .settings {
     display: flex;
     justify-content: space-between;

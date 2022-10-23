@@ -1,3 +1,4 @@
+const calc = document.querySelector(".calculate");
 const calcEntry = document.querySelector(".calc__entry");
 const calcResult = document.querySelector(".calc__result");
 const inputBtns = document.querySelectorAll(".calc__button");
@@ -52,8 +53,8 @@ const useOperator = (op) => {
 const eql = () => {
   result = true;
   let exp = calcResult.value + calcEntry.value;
-  if(exp) {
-    exp = exp.replace('--', '+');
+  if (exp) {
+    exp = exp.replace("--", "+");
     calcEntry.value = eval(exp);
   }
   calcResult.value = "";
@@ -83,7 +84,7 @@ cleanOne.addEventListener("click", clearOne);
 
 cleanBtn.addEventListener("click", clear);
 
-window.addEventListener("keydown", (e) => {
+calc.addEventListener("keydown", (e) => {
   if ((e.key >= 0 && e.key <= 9) || e.key == ".") {
     sendNumberValue(e.key);
   } else if (e.key == "+" || e.key == "-" || e.key == "/" || e.key == "*") {
