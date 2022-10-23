@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script charset="utf-8" src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript" defer></script>
+    <script
+      charset="utf-8"
+      src="https://api-maps.yandex.ru/1.1/index.xml"
+      type="text/javascript"
+      defer
+    ></script>
     <title>Webpack</title>
   </head>
   <body>
@@ -15,6 +20,10 @@
       <div class="container">
         <section class="slider-carousel section">
           <h2 class="slider-carousel__title title">Слайдер карусель</h2>
+          <form class="slide-show">
+            <input type="text" type="number" placeholder="Кол-во слайдов" />
+            <button class="slide-show__btn">Отобразить</button>
+          </form>
           <div class="slider">
             <div class="slider__wrapper">
               <div class="slider__item">
@@ -59,16 +68,7 @@
               </button>
             </div>
           </div>
-          <div class="dots">
-            <span class="dot dot--active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+          <div class="dots"></div>
         </section>
         <section class="calculate section">
           <h2 class="calc__title title">Калькулятор</h2>
@@ -171,18 +171,32 @@
               <div class="game__overlay"></div>
               <div class="game__popup">
                 <p class="game__popup-message"></p>
-                <img class="game__popup-img" alt="">
-                <button class="game__popup-btn">Продолжить</button>
+                <img class="game__popup-img" alt="" />
+                <button class="game__popup-continue popup-btn hide">
+                  Продолжить
+                </button>
+                <button class="game__popup-reset popup-btn hide">
+                  Сначала
+                </button>
               </div>
             </div>
             <div class="game__settings settings">
               <div class="settings__fields">
-                <input class="settings__cols" id="cols" type="number" value="10" />
-                <input class="settings__rows" id="rows" type="number" value="10" />
+                <input
+                  class="settings__cols"
+                  id="cols"
+                  type="number"
+                  value="10"
+                />
+                <input
+                  class="settings__rows"
+                  id="rows"
+                  type="number"
+                  value="10"
+                />
               </div>
               <button class="settings__btn" id="start-game">Старт</button>
             </div>
-            
           </div>
         </section>
         <section class="weather section">

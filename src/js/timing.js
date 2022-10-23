@@ -44,6 +44,8 @@ function startWorkTiming() {
   hide(startBtn);
   show(pauseBtn);
   removeDisabled(pauseBtn);
+
+  
   interval = setInterval(() => {
     timeWorkSecond--;
     displayTime(timeWorkSecond);
