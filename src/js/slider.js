@@ -20,7 +20,7 @@ visitSlide.addEventListener("input", () => {
   sliderShowBtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.setItem("count", JSON.stringify(visitSlide.value));
-    location.assign("/");
+    location.assign("/WD-javascript/");
   });
 });
 
